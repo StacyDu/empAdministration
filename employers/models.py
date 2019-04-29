@@ -1,3 +1,5 @@
+from time import strftime
+
 from django.core.validators import MinValueValidator
 from django.db import models
 
@@ -7,6 +9,8 @@ REFERENCE_CHOICES = (
     (2, 'Staff'),
     (3, 'Applicant'),
 )
+
+# Table with developers
 
 
 class Developers(models.Model):
@@ -18,6 +22,9 @@ class Developers(models.Model):
     date_hired = models.DateField(null=True)
     notes = models.CharField(max_length=128, null=True)
     reference = models.IntegerField(choices=REFERENCE_CHOICES)
+
+
+# Table with personal details needed for contracts
 
 
 class PersonalDetails(models.Model):
@@ -33,9 +40,18 @@ class PersonalDetails(models.Model):
     account_number = models.IntegerField(null=True)
 
 
+# Table with pdf documents of all contracts for different tasks
+
+def contract_path(self, instance: Developers):
+    return "/{}_{}_{}_{}.pdf".format(instance.first_name, instance.last_name, instance.id, strftime('%Y%m%d'))
+
+
 class DevelopersContracts(models.Model):
     developer = models.ForeignKey(Developers, on_delete=models.PROTECT, primary_key=True)
-    contract = models.FileField(upload_to='pdf/', null=True, blank=True)
+    contract = models.FileField(upload_to=contract_path, null=True, blank=True)
+
+
+# Table with Technologies per candidate and vice versa
 
 
 class DevelopersTechnologies(models.Model):
