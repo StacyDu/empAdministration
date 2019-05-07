@@ -10,6 +10,28 @@ REFERENCE_CHOICES = (
     (3, 'Applicant'),
 )
 
+TECHNOLOGIES_CHOICES = (
+    (0, 'Python')
+    (1, 'JavaScript')
+    (2, 'Java')
+    (3, 'Golang')
+    (4, 'C#')
+    (5, 'C++')
+    (6, 'Blockchain')
+    (7, 'Data Science')
+    (8, 'Machine Learning')
+    (9, 'Groovy')
+    (10, 'Kotlin')
+    (11, 'Android')
+    (12, 'iOS')
+    (13, 'Scala')
+    (14, 'PHP')
+    (15, 'DevOps')
+    (16, 'Kotlin')
+    (17, 'Ruby')
+)
+
+
 # Table with developers
 
 
@@ -51,13 +73,18 @@ class DevelopersContracts(models.Model):
     contract = models.FileField(upload_to=contract_path, null=True, blank=True)
 
 
+# Table with Technologies
+
+class Technologies(models.Model):
+    technology_name = models.CharField(max_length=128)
+    developers = models.ManyToManyField(
+        Developers,
+        through='DevelopersTechnologies',
+    )
+
 # Table with Technologies per candidate and vice versa
 
 
 class DevelopersTechnologies(models.Model):
-    developer = models.OneToOneField(Developers, on_delete=models.CASCADE, primary_key=True)
-
-
-
-
-
+    developer = models.ForeignKey(Developers, on_delete=models.PROTECT)
+    technology_name = models.ForeignKey(Technologies, on_delete=models.PROTECT)
