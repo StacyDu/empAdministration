@@ -11,24 +11,24 @@ REFERENCE_CHOICES = (
 )
 
 TECHNOLOGIES_CHOICES = (
-    (0, 'Python')
-    (1, 'JavaScript')
-    (2, 'Java')
-    (3, 'Golang')
-    (4, 'C#')
-    (5, 'C++')
-    (6, 'Blockchain')
-    (7, 'Data Science')
-    (8, 'Machine Learning')
-    (9, 'Groovy')
-    (10, 'Kotlin')
-    (11, 'Android')
-    (12, 'iOS')
-    (13, 'Scala')
-    (14, 'PHP')
-    (15, 'DevOps')
-    (16, 'Kotlin')
-    (17, 'Ruby')
+    (0, 'Python'),
+    (1, 'JavaScript'),
+    (2, 'Java'),
+    (3, 'Golang'),
+    (4, 'C#'),
+    (5, 'C++'),
+    (6, 'Blockchain'),
+    (7, 'Data Science'),
+    (8, 'Machine Learning'),
+    (9, 'Groovy'),
+    (10, 'Kotlin'),
+    (11, 'Android'),
+    (12, 'iOS'),
+    (13, 'Scala'),
+    (14, 'PHP'),
+    (15, 'DevOps'),
+    (16, 'Kotlin'),
+    (17, 'Ruby'),
 )
 
 
@@ -69,8 +69,8 @@ def contract_path(self, instance: Developers):
 
 
 class DevelopersContracts(models.Model):
-    developer = models.ForeignKey(Developers, on_delete=models.PROTECT, primary_key=True)
     contract = models.FileField(upload_to=contract_path, null=True, blank=True)
+    developer = models.ForeignKey(Developers, on_delete=models.PROTECT)
 
 
 # Table with Technologies
