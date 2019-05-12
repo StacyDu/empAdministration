@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="" method="post">
+        <label> First name:
+            <input type="text" name="first_name">
+        </label>
+        <label> Last name:
+            <input type="text" name="last_name">
+        </label>
+        <label> Middle name:
+            <input type="text" name="middle_name">
+        </label>
+        <label> Email:
+            <input type="email" name="email">
+        </label>
+        <label> Salary:
+            <input type="number" name="salary">
+        </label>
+        <label> Date hired:
+            <input type="date" name="date_hired">
+        </label>
+        <label> Notes:
+            <input type="text" name="notes">
+        </label>
+        <label> References:
+            <select name="RF">
+                {% for k, v in options.items %}
+                     <option value={{ k }}>{{ v }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <input type="submit" value="OK">
+    </form>
+</body>
+</html>
