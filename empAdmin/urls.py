@@ -15,9 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from employers.views import hello
+from employers.views import (
+    CreateDeveloperView,
+    HomeView,
+    TechnologyView,
+    ShowTechnologyView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/', hello),
+    path('developers_form/', CreateDeveloperView.as_view()),
+    path('', HomeView.as_view()),
+    path('add_technology/', TechnologyView.as_view(), name='add-technology-view'),
+    path('show_technologies/', ShowTechnologyView.as_view(), name='show-technologies-view')
 ]

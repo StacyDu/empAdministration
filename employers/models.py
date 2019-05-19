@@ -32,6 +32,12 @@ TECHNOLOGIES_CHOICES = (
 )
 
 
+# Table with Technologies
+
+class Technologies(models.Model):
+    technology_name = models.CharField(max_length=128)
+
+
 # Table with developers
 
 
@@ -44,6 +50,10 @@ class Developers(models.Model):
     date_hired = models.DateField(null=True)
     notes = models.CharField(max_length=128, null=True)
     reference = models.IntegerField(choices=REFERENCE_CHOICES)
+    technology = models.ManyToManyField(
+        Technologies,
+        through='DevelopersTechnologies',
+    )
 
 
 # Table with personal details needed for contracts
@@ -72,15 +82,6 @@ class DevelopersContracts(models.Model):
     contract = models.FileField(upload_to=contract_path, null=True, blank=True)
     developer = models.ForeignKey(Developers, on_delete=models.PROTECT)
 
-
-# Table with Technologies
-
-class Technologies(models.Model):
-    technology_name = models.CharField(max_length=128)
-    developers = models.ManyToManyField(
-        Developers,
-        through='DevelopersTechnologies',
-    )
 
 # Table with Technologies per candidate and vice versa
 
