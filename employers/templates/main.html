@@ -1,6 +1,9 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'employers/main.css' %}">
     <meta charset="UTF-8">
     {% block title %}
     empAdmin
@@ -8,7 +11,7 @@
 </head>
 <body>
 
-<p>Welcome to the administration panel</p>
+<h1 id="welcome">Welcome to the administration panel</h1>
 
     {% block content %}
         Let's get started!

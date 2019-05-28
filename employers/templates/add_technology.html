@@ -5,10 +5,8 @@ Add new technology:
 {% endblock %}
 
 {% block content %}
-    <form action="" method="post">
-        <label> Technology name:
-            <input type="text", name="technology_name">
-        </label>
+    <form action="" method="post">{% csrf_token %}
+        {{ form.as_p }}
         <input type="submit" value="Add new technology">
     </form>
 {% endblock %}

@@ -2,7 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import CreateView, FormView
 
+from employers.forms import TechnologiesForm
 from employers.models import (
     REFERENCE_CHOICES,
     Developers,
@@ -49,13 +51,28 @@ class HomeView(View):
         return render_to_response('main.html')
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class TechnologyView(View):
-    def get(self, request):
-        return render_to_response('add_technology.html')
+# Historical data - to be deleted
+# @method_decorator(csrf_exempt, name='dispatch')
+# class TechnologyView(View):
+#     def get(self, request):
+#         return render_to_response('add_technology.html')
+#
+#     def post(self, request):
+#         technology_name = request.POST['technology_name']
+#         technology = Technologies.objects.create(
+#             technology_name=technology_name
+#         )
+#         return redirect('show-technologies-view')
 
-    def post(self, request):
-        technology_name = request.POST['technology_name']
+
+class TechnologiesCreateView(FormView):
+
+    template_name = 'add_technology.html'
+    # model = Technologies
+    form_class = TechnologiesForm
+
+    def form_valid(self, form):
+        technology_name = form.cleaned_data['technology_name']
         technology = Technologies.objects.create(
             technology_name=technology_name
         )
