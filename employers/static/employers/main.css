@@ -1,3 +1,9 @@
 #welcome {
     color: blue;
 }
+
+.required label:after {
+    color: tomato;
+    content: ' *';
+    display: inline;
+}

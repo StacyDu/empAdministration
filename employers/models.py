@@ -37,6 +37,9 @@ TECHNOLOGIES_CHOICES = (
 class Technologies(models.Model):
     technology_name = models.CharField(max_length=128)
 
+    def __str__(self):
+        return '{}'.format(self.technology_name.title())
+
 
 # Table with developers
 

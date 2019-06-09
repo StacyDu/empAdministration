@@ -1,12 +1,12 @@
 {% extends 'main.html' %}
 
 {% block title %}
-Add new technology:
+Add new
 {% endblock %}
 
 {% block content %}
     <form action="" method="post">{% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Add new technology">
+        <input type="submit" value="Submit">
     </form>
 {% endblock %}
