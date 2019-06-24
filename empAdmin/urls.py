@@ -16,17 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from employers.views import (
-    DevelopersCreateView,
+    DeveloperCreateView,
     HomeView,
-    # TechnologyView,
-    TechnologiesCreateView,
-    ShowTechnologyView,
+    TechnologyCreateView,
+    ShowTechnologiesView,
+    ShowDevelopersView,
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('developers_form/', DevelopersCreateView.as_view()),
+    path('add_developer/', DeveloperCreateView.as_view()),
     path('', HomeView.as_view()),
-    path('add_technology/', TechnologiesCreateView.as_view(), name='add-technology-view'),
-    path('show_technologies/', ShowTechnologyView.as_view(), name='show-technologies-view')
+    path('add_technology/', TechnologyCreateView.as_view(), name='add-technology-view'),
+    path('show_technologies/', ShowTechnologiesView.as_view(), name='show-technologies-view'),
+    path('show_developers/', ShowDevelopersView.as_view(), name='show-developers-view')
 ]

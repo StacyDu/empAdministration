@@ -10,27 +10,6 @@ REFERENCE_CHOICES = (
     (3, 'Applicant'),
 )
 
-TECHNOLOGIES_CHOICES = (
-    (0, 'Python'),
-    (1, 'JavaScript'),
-    (2, 'Java'),
-    (3, 'Golang'),
-    (4, 'C#'),
-    (5, 'C++'),
-    (6, 'Blockchain'),
-    (7, 'Data Science'),
-    (8, 'Machine Learning'),
-    (9, 'Groovy'),
-    (10, 'Kotlin'),
-    (11, 'Android'),
-    (12, 'iOS'),
-    (13, 'Scala'),
-    (14, 'PHP'),
-    (15, 'DevOps'),
-    (16, 'Kotlin'),
-    (17, 'Ruby'),
-)
-
 
 # Table with Technologies
 
@@ -57,6 +36,9 @@ class Developers(models.Model):
         Technologies,
         through='DevelopersTechnologies',
     )
+
+    def __str__(self):
+        return '{} {}'.format(self.first_name.title(), self.last_name.title())
 
 
 # Table with personal details needed for contracts

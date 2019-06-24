@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Show the list:
+{% endblock %}
+
+{% block content %}
+<!--<p>List of technologies:</p>-->
+<ol>
+{% for object in object_list %}
+    <li>{{object}}</li>
+{% endfor %}
+</ol>
+
+<!--<p><a href="{% url 'add-technology-view' %}">Add new technology</a></p>-->
+
+{% endblock %}

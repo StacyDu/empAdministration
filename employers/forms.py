@@ -18,18 +18,14 @@ class TechnologiesForm(forms.ModelForm):
 
 
 class DevelopersForm(forms.ModelForm):
-    technology = forms.ModelChoiceField(widget=forms.SelectMultiple, queryset=Technologies.objects.all())
+    date_hired = forms.DateField(widget=forms.SelectDateWidget)
+    middle_name = forms.CharField(required=False)
 
     class Meta:
         model = Developers
         fields = '__all__'
-        # [
-        #     first_name
-        #     last_name
-        #     middle_name
-        #     email
-        #     salary
-        #     date_hired
-        #     notes
-        #     reference
-        # ]
+
+        widgets = {
+            'technology': forms.CheckboxSelectMultiple(),
+        }
+
