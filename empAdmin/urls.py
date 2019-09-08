@@ -21,6 +21,8 @@ from employers.views import (
     TechnologyCreateView,
     ShowTechnologiesView,
     ShowDevelopersView,
+    DeveloperView,
+    DeveloperDeleteView,
 )
 
 urlpatterns = [
@@ -29,5 +31,7 @@ urlpatterns = [
     path('', HomeView.as_view()),
     path('add_technology/', TechnologyCreateView.as_view(), name='add-technology-view'),
     path('show_technologies/', ShowTechnologiesView.as_view(), name='show-technologies-view'),
-    path('show_developers/', ShowDevelopersView.as_view(), name='show-developers-view')
+    path('show_developers/', ShowDevelopersView.as_view(), name='show-developers-view'),
+    path('developer_view/<int:pk>/', DeveloperView.as_view(), name='show-developer'),
+    path('delete_developer/<int:pk>/', DeveloperDeleteView.as_view(), name='delete-developer'),
 ]

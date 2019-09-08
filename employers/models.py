@@ -2,6 +2,7 @@ from time import strftime
 
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.urls import reverse
 
 REFERENCE_CHOICES = (
     (0, 'Facebook'),
@@ -36,6 +37,12 @@ class Developers(models.Model):
         Technologies,
         through='DevelopersTechnologies',
     )
+
+    def get_absolute_url(self):
+        return reverse('show-developer', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('delete-developer', kwargs={'pk': self.id})
 
     def __str__(self):
         return '{} {}'.format(self.first_name.title(), self.last_name.title())
@@ -72,5 +79,5 @@ class DevelopersContracts(models.Model):
 
 
 class DevelopersTechnologies(models.Model):
-    developer = models.ForeignKey(Developers, on_delete=models.PROTECT)
-    technology_name = models.ForeignKey(Technologies, on_delete=models.PROTECT)
+    developer = models.ForeignKey(Developers, on_delete=models.CASCADE)
+    technology_name = models.ForeignKey(Technologies, on_delete=models.CASCADE)

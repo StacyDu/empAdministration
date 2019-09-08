@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Developer details
+{% endblock %}
+
+{% block content %}
+<div>{{developer}}
+    {% for field, value in developer.as_object.item %}
+    <p>{{ field }} : {{ value }}</p>
+    {% endfor %}
+    [<a href="{{ developer.get_delete_url }}" style="color:red">DELETE</a>]
+</div>
+
+
+{% endblock %}
